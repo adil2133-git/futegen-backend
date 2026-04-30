@@ -107,12 +107,12 @@ const verifyOtpController = async (req, res) => {
             .cookie("Access_Token", AccessToken, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None"
+                sameSite: "none"
             })
             .cookie("Refresh_Token", RefreshToken, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None"
+                sameSite: "none"
             })
             .json({
                 message: "User registered successfully",

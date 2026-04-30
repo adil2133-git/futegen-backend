@@ -23,8 +23,8 @@ const tokenRegenerate = (req, res) => {
         return res
             .cookie("Access_Token", AccessToken, {
                 httpOnly: true,
-                sameSite: "lax",
-                secure: false
+                sameSite: "none",
+                secure: true
             })
             .status(200)
             .json({ message: "Token refreshed" });
