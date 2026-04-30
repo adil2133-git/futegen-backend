@@ -99,20 +99,20 @@ const verifyOtpController = async (req, res) => {
 
         await client.del(`register:${email}`);
 
-        const isProduction = process.env.NODE_ENV === "production";
+        // const isProduction = process.env.NODE_ENV === "production";
 
 
         return res
             .status(201)
             .cookie("Access_Token", AccessToken, {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "lax"
+                secure: true,
+                sameSite: "None"
             })
             .cookie("Refresh_Token", RefreshToken, {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "lax"
+                secure: true,
+                sameSite: "None"
             })
             .json({
                 message: "User registered successfully",
@@ -183,20 +183,20 @@ const LoginController = async (req, res) => {
 
         const { AccessToken, RefreshToken } = generateToken(user.email, user._id, user.role)
 
-        const isProduction = process.env.NODE_ENV === "production";
+        // const isProduction = process.env.NODE_ENV === "production";
 
 
         return res
             .status(200)
             .cookie("Access_Token", AccessToken, {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "lax"
+                secure: true,
+                sameSite: "None"
             })
             .cookie("Refresh_Token", RefreshToken, {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "lax"
+                secure: true,
+                sameSite: "None"
             })
             .json({
                 message: "Login Successful",
@@ -216,18 +216,18 @@ const LoginController = async (req, res) => {
 
 const logoutController = async (req, res) => {
     try {
-        const isProduction = process.env.NODE_ENV === "production";
+        // const isProduction = process.env.NODE_ENV === "production";
 
         res
             .clearCookie("Access_Token", {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "lax"
+                secure: true,
+                sameSite: "None"
             })
             .clearCookie("Refresh_Token", {
                 httpOnly: true,
-                secure: isProduction,
-                sameSite: isProduction ? "None" : "lax"
+                secure: true,
+                sameSite: "None"
             })
             .status(200)
             .json({ message: "Logged out successfully" })

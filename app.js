@@ -20,7 +20,7 @@ const app = express();
 
 
 app.use(cors({
-    origin: "https://futgen-frontend-kpxajui7y-adils-projects-56610607.vercel.app",
+    origin: true,
     credentials: true
 }))
 
