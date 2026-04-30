@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
-const generateToken = require("../Utils/tokenGenerate");
+const generateToken = require("../utils/tokenGenerate");
 const { client } = require("../config/redis");
 const { sendOtp, verifyOtp } = require("../service/otpController");
 const userModel = require("../models/userModel");

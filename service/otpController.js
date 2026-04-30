@@ -1,5 +1,5 @@
 const transporter = require("../config/mail");
-const generateOTP = require("../Utils/generateOtp")
+const generateOTP = require("../utils/generateOtp")
 const {client} = require("../config/redis")
 require("dotenv").config()
 
