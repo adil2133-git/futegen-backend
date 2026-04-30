@@ -191,12 +191,12 @@ const LoginController = async (req, res) => {
             .cookie("Access_Token", AccessToken, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None"
+                sameSite: "none"
             })
             .cookie("Refresh_Token", RefreshToken, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None"
+                sameSite: "none"
             })
             .json({
                 message: "Login Successful",
@@ -222,12 +222,12 @@ const logoutController = async (req, res) => {
             .clearCookie("Access_Token", {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None"
+                sameSite: "none"
             })
             .clearCookie("Refresh_Token", {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None"
+                sameSite: "none"
             })
             .status(200)
             .json({ message: "Logged out successfully" })
