@@ -11,10 +11,10 @@ const orderRoutes = require("./routes/orderRoutes")
 const paymentRoutes = require("./routes/paymentRoutes")
 const contactRoutes = require("./routes/contactRoutes")
 
-const adminProductRoutes = require("./routes/Admin/adminProductRoutes")
-const adminUserRoutes = require("./routes/Admin/adminUserRoutes")
-const adminOrderRoutes = require("./routes/Admin/adminOrderRoutes")
-const adminDashboardRoutes = require("./routes/Admin/adminDashboardRoutes")
+const adminProductRoutes = require("./routes/admin/adminProductRoutes")
+const adminUserRoutes = require("./routes/admin/adminUserRoutes")
+const adminOrderRoutes = require("./routes/admin/adminOrderRoutes")
+const adminDashboardRoutes = require("./routes/admin/adminDashboardRoutes")
 
 const app = express();
 

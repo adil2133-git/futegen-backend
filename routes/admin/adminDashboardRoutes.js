@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 
-const {getDashboardStats} = require("../../controllers/Admin/adminDashboardController")
+const {getDashboardStats} = require("../../controllers/admin/adminDashboardController")
 
 router.get("/", getDashboardStats)
 
