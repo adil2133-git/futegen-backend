@@ -1,0 +1,41 @@
+const jwt = require("jsonwebtoken");
+
+const tokenRegenerate = (req, res) => {
+    try {
+        const token = req.cookies?.Refresh_Token;
+
+        if (!token) {
+            return res.status(401).json({ message: "No Refresh Token" });
+        }
+
+        const decoded = jwt.verify(token, process.env.REFRESH_TOKEN);
+
+        const AccessToken = jwt.sign(
+            {
+                email: decoded.email,
+                id: decoded.id,
+                role: decoded.role
+            },
+            process.env.ACCESS_TOKEN,
+            { expiresIn: "15m" }
+        );
+
+        return res
+            .cookie("Access_Token", AccessToken, {
+                httpOnly: true,
+                sameSite: "lax",
+                secure: false
+            })
+            .status(200)
+            .json({ message: "Token refreshed" });
+
+    } catch (err) {
+        if (err.name === "TokenExpiredError") {
+            return res.status(401).json({ message: "Refresh token expired" });
+        }
+
+        return res.status(401).json({ message: "Invalid refresh token" });
+    }
+};
+
+module.exports = tokenRegenerate;
