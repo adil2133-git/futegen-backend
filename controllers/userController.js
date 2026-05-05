@@ -1,4 +1,3 @@
-const User = require("../models/userModel");
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
@@ -20,7 +19,7 @@ const RegisterController = async (req, res) => {
             return res.status(400).json({ message: "First name must be at least 3 characters" })
         }
 
-        const userExists = await User.findOne({ email });
+        const userExists = await userModel.findOne({ email });
 
         if (userExists) {
             return res.status(409).json({ message: "User already exists" })
@@ -163,7 +162,7 @@ const LoginController = async (req, res) => {
             return res.status(400).json({ message: "All fields are required" })
         }
 
-        const user = await User.findOne({ email }).select("+password");
+        const user = await userModel.findOne({ email }).select("+password");
 
         if (!user) {
             return res.status(400).json({ message: "Invalid email or password" })
@@ -248,7 +247,7 @@ const GetLoginUser = async (req, res) => {
                 message: "Unauthorized"
             });
         }
-        const userData = await User.findOne({ _id: req.user.userID })
+        const userData = await userModel.findOne({ _id: req.user.userID })
         console.log("user data from db:", userData)
 
         res.status(200).json({
