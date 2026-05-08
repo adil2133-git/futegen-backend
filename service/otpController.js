@@ -85,7 +85,7 @@ const sendOtp = async (email) => {
         await client.setEx(`otp:${email}`, 120, otp);
 
         await resend.emails.send({
-            from: "onboarding@resend.dev",
+            from:process.env.ADMIN_EMAIL,
             to: email,
             subject: "Your OTP Code",
             html: `
