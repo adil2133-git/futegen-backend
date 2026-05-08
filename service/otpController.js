@@ -84,19 +84,21 @@ const sendOtp = async (email) => {
 
         await client.setEx(`otp:${email}`, 120, otp);
 
-        await resend.emails.send({
-            from:process.env.ADMIN_EMAIL,
-            to: email,
-            subject: "Your OTP Code",
-            html: `
-                <div style="font-family: Arial, sans-serif;">
-                    <h2>OTP Verification</h2>
-                    <p>Your OTP is:</p>
-                    <h1>${otp}</h1>
-                    <p>This OTP will expire in 2 minutes.</p>
-                </div>
-            `
-        });
+const data = await resend.emails.send({
+    from: "onboarding@resend.dev",
+    to: email,
+    subject: "Your OTP Code",
+    html: `
+        <div style="font-family: Arial, sans-serif;">
+            <h2>OTP Verification</h2>
+            <p>Your OTP is:</p>
+            <h1>${otp}</h1>
+            <p>This OTP will expire in 2 minutes.</p>
+        </div>
+    `
+});
+
+console.log("RESEND RESPONSE:", data);
 
         return { success: true };
 
