@@ -2,7 +2,6 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -12,9 +11,19 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS
     },
 
-    connectionTimeout: 15000,
-    greetingTimeout: 15000,
-    socketTimeout: 15000,
+    family: 4, // force IPv4 instead of IPv6
+
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000,
+
+    tls: {
+        rejectUnauthorized: false
+    },
+
+    pool: true,
+    maxConnections: 5,
+    maxMessages: 100,
 
     debug: true,
     logger: true
