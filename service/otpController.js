@@ -21,17 +21,17 @@ const sendOtp = async (email) => {
 
         await client.setEx(`otp:${email}`, 120, otp)
 
-        await transporter.sendMail({
-            from: process.env.BREVO_USER,
-            to: email,
-            subject: "Your OTP Code",
-            html: `
-                <div>
-                    <h2>Your OTP is:</h2>
-                    <h1>${otp}</h1>
-                </div>
-            `
-        });
+await transporter.sendMail({
+    from: "test@mailtrap.io",
+    to: email,
+    subject: "Your OTP Code",
+    html: `
+        <div>
+            <h2>Your OTP is:</h2>
+            <h1>${otp}</h1>
+        </div>
+    `
+});
 
         return {success: true}
     }catch(err){
