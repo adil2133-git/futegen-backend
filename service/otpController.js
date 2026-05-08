@@ -22,10 +22,15 @@ const sendOtp = async (email) => {
         await client.setEx(`otp:${email}`, 120, otp)
 
         await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: process.env.BREVO_USER,
             to: email,
             subject: "Your OTP Code",
-            text: `Your OTP is ${otp}`
+            html: `
+                <div>
+                    <h2>Your OTP is:</h2>
+                    <h1>${otp}</h1>
+                </div>
+            `
         });
 
         return {success: true}
