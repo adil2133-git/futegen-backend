@@ -11,6 +11,8 @@ const orderRoutes = require("./routes/orderRoutes")
 const paymentRoutes = require("./routes/paymentRoutes")
 const contactRoutes = require("./routes/contactRoutes")
 
+const review = require("./controllers/admin/reviewTask")
+
 const adminProductRoutes = require("./routes/admin/adminProductRoutes")
 const adminUserRoutes = require("./routes/admin/adminUserRoutes")
 const adminOrderRoutes = require("./routes/admin/adminOrderRoutes")
@@ -20,9 +22,10 @@ const app = express();
 
 
 app.use(cors({
-    origin: "https://futgen-frontend.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true
 }))
+
 
 app.use(express.json())
 app.use(cookieParser())
@@ -45,6 +48,7 @@ app.use("/api/wishlist", wishlistRoutes)
 app.use("/api/orders", orderRoutes)
 app.use("/api/payment", paymentRoutes)
 app.use("/api/contact", contactRoutes)
+app.use("/api", review)
 
 
 app.use("/api/admin/product", adminProductRoutes)

@@ -78,7 +78,7 @@ const addProduct = async (req, res) => {
             return res.status(400).json({ message: "Image required" })
         }
 
-        const newProudct = await productModel.create({
+        const newProduct = await productModel.create({
             name,
             price,
             category,
@@ -87,7 +87,7 @@ const addProduct = async (req, res) => {
             public_id: req.file.filename
         })
 
-        res.status(201).json(newProudct)
+        res.status(201).json(newProduct)
     } catch (err) {
         res.status(500).json({ message: "Error adding product", error: err.message })
     }
@@ -139,7 +139,7 @@ const updateProduct = async (req, res) => {
     }
 }
 
-const toggleProudctStatus = async (req, res) => {
+const toggleProductStatus = async (req, res) => {
     try {
         const id = req.params.id
 
@@ -193,5 +193,5 @@ module.exports = {
     getAllProducts,
     updateProduct,
     deleteProduct,
-    toggleProudctStatus
+    toggleProductStatus
 }
