@@ -22,7 +22,7 @@ const sendOtp = async (email) => {
         await client.setEx(`otp:${email}`, 120, otp)
 
 await transporter.sendMail({
-    from: "test@mailtrap.io",
+    from: "futgen07@gmail.com",
     to: email,
     subject: "Your OTP Code",
     html: `
