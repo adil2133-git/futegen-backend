@@ -20,11 +20,16 @@ const adminDashboardRoutes = require("./routes/admin/adminDashboardRoutes")
 
 const app = express();
 
+app.set("trust proxy", 1);
 
 app.use(cors({
-    origin: "https://futgen-frontend.vercel.app",
-    credentials: true
-}))
+  origin: [
+    "https://futgen-frontend.vercel.app"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 
 app.use(express.json())
