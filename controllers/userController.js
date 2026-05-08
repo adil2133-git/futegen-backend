@@ -47,7 +47,8 @@ const RegisterController = async (req, res) => {
         res.status(200).json({ message: "OTP sent. Please verify to complete registration" })
 
     } catch (err) {
-        res.status(500).json({ message: "Internal server error" })
+        console.log("REGISTER ERROR:", err)
+        res.status(500).json({ message: "Internal server error", Error: err.message })
     }
 }
 

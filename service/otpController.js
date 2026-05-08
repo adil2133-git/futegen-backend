@@ -28,7 +28,7 @@ const sendOtp = async (email) => {
         return {success: true}
     }catch(err){
         console.log("send otp error", err);
-        return {success: false, message: "Failed to send OTP"}
+        return {success: false, message: "Failed to send OTP", Error: err.message}
     }
 }
 
@@ -49,7 +49,7 @@ const verifyOtp = async (email, userOtp) => {
         return {success: false}
     }catch(err){
         console.log("Verify OTP Error:", err)
-        return {success: false, message: "Something went wrong"}
+        return {success: false, message: "Something went wrong", Error: err.message}
     }
 }
 
