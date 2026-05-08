@@ -5,6 +5,9 @@ require("dotenv").config()
 
 const sendOtp = async (email) => {
     try{
+        await transporter.verify();
+        console.log("SMTP SERVER READY");
+
         const existingOtp = await client.get(`otp:${email}`);
         if(existingOtp){
             return{
