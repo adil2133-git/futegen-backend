@@ -23,7 +23,7 @@ app.set("trust proxy", 1);
 
 app.use(cors({
   origin: [
-    "https://futgen-frontend.vercel.app"
+    "http://localhost:5173"
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
