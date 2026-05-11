@@ -5,9 +5,6 @@ require("dotenv").config()
 
 const sendOtp = async (email) => {
     try{
-        await transporter.verify();
-        console.log("SMTP SERVER READY");
-
         const existingOtp = await client.get(`otp:${email}`);
         if(existingOtp){
             return{
@@ -21,17 +18,12 @@ const sendOtp = async (email) => {
 
         await client.setEx(`otp:${email}`, 120, otp)
 
-await transporter.sendMail({
-    from: "futgen07@gmail.com",
-    to: email,
-    subject: "Your OTP Code",
-    html: `
-        <div>
-            <h2>Your OTP is:</h2>
-            <h1>${otp}</h1>
-        </div>
-    `
-});
+        await transporter.sendMail({
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: "Your OTP Code",
+            text: `Your OTP is ${otp}`
+        });
 
         return {success: true}
     }catch(err){
